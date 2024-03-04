@@ -1,0 +1,41 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - src/prepare.py
+    params:
+      - prepare.limits
+    outs:
+      - data/scrape/Tweets.csv
+  process:
+    cmd: python src/process.py
+    deps:
+      - data/scrape/Tweets.csv
+      - src/process.py
+    outs:
+      - data/processed/PTweets.csv
+  train:
+    cmd: python src/train.py
+    deps:
+      - data/processed/PTweets.csv
+      - src/train.py
+    params:
+      - train.split
+      - train.random
+    outs:
+      - vectorizer.pkl
+      - classifier.pkl
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - vectorizer.pkl
+      - classifier.pkl
+    outs:
+      - metric/accuracy.json
+  flask:
+    cmd: python src/http_server.py
+    deps:
+      - src/http_server.py
+
+

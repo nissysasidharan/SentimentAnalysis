@@ -1,0 +1,9 @@
+prepare:
+  limits: 100000
+  topic: "COVID Vaccine"
+  fromDate: "2021-01-01"
+  toDate: "2021-05-31"
+
+train:
+  split: 0.5
+  random: 42

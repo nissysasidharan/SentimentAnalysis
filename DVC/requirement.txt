@@ -1,0 +1,10 @@
+pandas
+snscrape
+pickle
+textblob
+scikit-learn
+nltk
+string
+json
+pyyaml
+jasonify
